@@ -145,6 +145,35 @@ public class HangHoaDAO implements DAOInterface<HangHoa> {
 	}
 
 	@Override
+	public HangHoa selectById(HangHoa t) {
+		HangHoa hangHoa = new HangHoa();
+		try {
+			Connection conn = DBConnectionFactory.getConnection();
+			
+			String sql = "SELECT * FROM HangHoa WHERE maSanPham = ?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, t.getMaSanPham());
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				hangHoa.setMaSanPham(rs.getString("maSanPham"));
+				hangHoa.setTenSanPham(rs.getString("tenSanPham"));
+				hangHoa.setNhaSanXuat(rs.getString("nhaSanXuat"));
+				hangHoa.setSoLuong(rs.getInt("soLuong"));
+				hangHoa.setGiaBan(rs.getDouble("giaBan"));
+				hangHoa.setNgaySanXuat(rs.getDate("ngaySanXuat"));
+				hangHoa.setHanSuDung(rs.getDate("hanSuDung"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return hangHoa;
+	}
+	
+	
+	@Override
 	public ArrayList<HangHoa> selectByCondition(String condition) {
 		// TODO Auto-generated method stub
 		ArrayList<HangHoa> list = new ArrayList<>();
@@ -174,11 +203,6 @@ public class HangHoaDAO implements DAOInterface<HangHoa> {
 		return list;
 	}
 
-	@Override
-	public HangHoa selectById(HangHoa t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	@Override
 	public boolean isProductExist(HangHoa t) {
 		// TODO Auto-generated method stub

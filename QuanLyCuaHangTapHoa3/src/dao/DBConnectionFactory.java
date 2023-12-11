@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnectionFactory {
-	private static final String DATABASE_URL = "jdbc:sqlserver://AD:1433;databaseName=CuaHangTapHoa;encrypt=false";
+	private static final String DATABASE_URL = "jdbc:sqlserver://THORSE:1433;databaseName=CuaHangTapHoa;encrypt=false";
     private static final String DATABASE_USER_NAME = "sa";
-    private static final String DATABASE_PASSWORD = "123456789";
+    private static final String DATABASE_PASSWORD = "123";
     public static Connection getConnection() throws SQLException {
        return DriverManager.getConnection(DATABASE_URL, DATABASE_USER_NAME, DATABASE_PASSWORD);
     }
