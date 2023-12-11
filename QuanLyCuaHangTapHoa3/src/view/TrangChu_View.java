@@ -1577,7 +1577,6 @@ public class TrangChu_View extends JFrame {
 	}
 
 	public void chuyenSangManHinhXacNhan() {
-		System.out.print("hh");
 		HienThiBangDaChon();
 		cardLayout.show(panel_CardLayout, "panel_XacNhanThanhToan");
 	}
