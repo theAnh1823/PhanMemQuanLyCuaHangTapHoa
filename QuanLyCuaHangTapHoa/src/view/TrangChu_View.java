@@ -16,6 +16,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,6 +55,7 @@ import controller.Mouse_Controller;
 import controller.TrangChu_Controller;
 import dao.HangHoaDAO;
 import model.HangHoa;
+import model.SanPhamDaBan;
 import resource.Color_Res;
 import java.awt.event.ActionEvent;
 
@@ -111,6 +113,15 @@ public class TrangChu_View extends JFrame {
 	private JButton btn_LamMoi_Kho;
 	private JButton btn_LamMoi_BanHang;
 	private JButton btn_LamMoi_ThongKe;
+	private JComboBox comboBox_Loc;
+	private JLabel text_Ngay;
+	private JLabel lbl_TienDoanhThuNgay;
+	private ArrayList<HangHoa> listThongKe;
+	private ArrayList<SanPhamDaBan> listDoanhThu;
+	private JLabel text_Thang;
+	private JLabel lbl_TienDoanhThuThang;
+	private JLabel text_Nam;
+	private JLabel lbl_TienDoanhThuNam;
 
 	/**
 	 * Launch the application.
@@ -733,6 +744,8 @@ public class TrangChu_View extends JFrame {
 
 		btn_Xoa_ThongKe = new JButton("Xóa");
 		btn_Xoa_ThongKe.addMouseListener(mouseListener);
+		btn_Xoa_ThongKe.setActionCommand("Xóa hàng hết hsd");
+		btn_Xoa_ThongKe.addActionListener(actionListener);
 		btn_Xoa_ThongKe.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_Xoa_ThongKe.setIcon(
 				new ImageIcon(TrangChu_View.class.getResource("/resource/Hopstarter-Button-Button-Delete.24.png")));
@@ -789,11 +802,12 @@ public class TrangChu_View extends JFrame {
 				"Lọc top 20 sản phẩm có số lượng nhỏ nhất trong kho",
 				"Lọc top 20 sản phẩm có số lượng lớn nhất trong kho",
 				"Lọc top 20 sản phẩm có ngày sản xuất gần với ngày hiện tại nhất" };
-		JComboBox comboBox_Loc = new JComboBox(luaChonLoc);
+		comboBox_Loc = new JComboBox(luaChonLoc);
 		comboBox_Loc.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		btn_Loc = new JButton("Lọc");
 		btn_Loc.addMouseListener(mouseListener);
+		btn_Loc.addActionListener(actionListener);
 		btn_Loc.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_Loc.setIcon(new ImageIcon(TrangChu_View.class.getResource("/resource/filter.png")));
 		btn_Loc.setForeground(Color.WHITE);
@@ -856,6 +870,7 @@ public class TrangChu_View extends JFrame {
 		});
 
 		btn_DoanhThuNgay = new JButton("Thống kê");
+		btn_DoanhThuNgay.setActionCommand("Doanh thu theo ngày");
 		btn_DoanhThuNgay.addActionListener(actionListener);
 		btn_DoanhThuNgay.addMouseListener(mouseListener);
 		btn_DoanhThuNgay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -921,11 +936,11 @@ public class TrangChu_View extends JFrame {
 		JLabel lblNewLabel_5_2 = new JLabel("Doanh thu ngày");
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel lbl_TienDoanhThuNgay = new JLabel("(ghi số tiền vào đây)");
+		lbl_TienDoanhThuNgay = new JLabel("(ghi số tiền vào đây)");
 		lbl_TienDoanhThuNgay.setForeground(new Color(0, 128, 0));
 		lbl_TienDoanhThuNgay.setFont(new Font("Tahoma", Font.BOLD, 18));
 
-		JLabel text_Ngay = new JLabel("dd/mm/yyyy:");
+		text_Ngay = new JLabel("dd/mm/yyyy:");
 		text_Ngay.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel_2_1 = new GroupLayout(panel_2_1);
 		gl_panel_2_1.setHorizontalGroup(gl_panel_2_1.createParallelGroup(Alignment.TRAILING)
@@ -989,6 +1004,8 @@ public class TrangChu_View extends JFrame {
 		});
 
 		btn_DoanhThuThang = new JButton("Thống kê");
+		btn_DoanhThuThang.setActionCommand("Doanh thu theo tháng");
+		btn_DoanhThuThang.addActionListener(actionListener);
 		btn_DoanhThuThang.addMouseListener(mouseListener);
 		btn_DoanhThuThang.setIcon(new ImageIcon(
 				TrangChu_View.class.getResource("/resource/Graphicloads-Flat-Finance-Dollar-stats.24.png")));
@@ -1055,10 +1072,10 @@ public class TrangChu_View extends JFrame {
 		JLabel lblNewLabel_5_2_2 = new JLabel("Doanh thu tháng");
 		lblNewLabel_5_2_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel text_Thang = new JLabel("(month):");
+		text_Thang = new JLabel("(month):");
 		text_Thang.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel lbl_TienDoanhThuThang = new JLabel("(ghi số tiền vào đây)");
+		lbl_TienDoanhThuThang = new JLabel("(ghi số tiền vào đây)");
 		lbl_TienDoanhThuThang.setForeground(new Color(0, 128, 0));
 		lbl_TienDoanhThuThang.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel_2_1_1 = new GroupLayout(panel_2_1_1);
@@ -1143,10 +1160,10 @@ public class TrangChu_View extends JFrame {
 		JLabel lblNewLabel_5_2_3 = new JLabel("Doanh thu năm");
 		lblNewLabel_5_2_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel text_Nam = new JLabel("(year):");
+		text_Nam = new JLabel("(year):");
 		text_Nam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		JLabel lbl_TienDoanhThuNam = new JLabel("(ghi số tiền vào đây)");
+		lbl_TienDoanhThuNam = new JLabel("(ghi số tiền vào đây)");
 		lbl_TienDoanhThuNam.setForeground(new Color(0, 128, 0));
 		lbl_TienDoanhThuNam.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel_2_1_2 = new GroupLayout(panel_2_1_2);
@@ -1192,6 +1209,8 @@ public class TrangChu_View extends JFrame {
 		});
 
 		btn_DoanhThuNam = new JButton("Thống kê");
+		btn_DoanhThuNam.setActionCommand("Doanh thu theo năm");
+		btn_DoanhThuNam.addActionListener(actionListener);
 		btn_DoanhThuNam.addMouseListener(mouseListener);
 		btn_DoanhThuNam.setIcon(new ImageIcon(
 				TrangChu_View.class.getResource("/resource/Graphicloads-Flat-Finance-Dollar-stats.24.png")));
@@ -1904,6 +1923,155 @@ public class TrangChu_View extends JFrame {
 			}
 
 		}
+	}
+	public void setTableLoc(String sql) {
+		listThongKe = HangHoaDAO.getInstance().selectBySQL(sql);
+		model_HangHoaLoc.getDataVector().removeAllElements();
+//		lamMoiTrang();
+		for (HangHoa hangHoa : listThongKe) {
+			model_HangHoaLoc.addRow(new Object[] { hangHoa.getMaSanPham(), hangHoa.getTenSanPham(),
+					hangHoa.getNhaSanXuat(), hangHoa.getSoLuong(), hangHoa.getGiaBan(),
+					sdf.format(hangHoa.getNgaySanXuat()), sdf.format(hangHoa.getHanSuDung())});
+		}
+	}
+	public void locData() {
+		String luaChon = comboBox_Loc.getSelectedItem().toString();
+		if(luaChon.equals("Lọc danh sách những sản phẩm đã quá hạn sử dụng")) {
+			setTableLoc("select * from HangHoa where getdate() >= hanSuDung");
+			if(model_HangHoaLoc.getRowCount() == 0) {
+				model_HangHoaLoc.getDataVector().removeAllElements();
+				String noText[] = {"", "", "", "", "", ""};
+				model_HangHoaLoc.addRow(noText);
+				model_HangHoaLoc.removeRow(0);
+				JOptionPane.showMessageDialog(new JFrame(), "Không có sản phẩm hết hạn!", "Thông báo",
+						JOptionPane.INFORMATION_MESSAGE);
+			}	
+		}else if(luaChon.equals("Lọc top 20 sản phẩm có số lượng nhỏ nhất trong kho")) {
+			setTableLoc("select top 20 * from HangHoa order by soLuong asc, tenSanPham asc");
+		}else if(luaChon.equals("Lọc top 20 sản phẩm có số lượng lớn nhất trong kho")) {
+			setTableLoc("select top 20 * from HangHoa order by soLuong desc, tenSanPham asc");
+		}else if(luaChon.equals("Lọc top 20 sản phẩm có ngày sản xuất gần với ngày hiện tại nhất")) {
+			setTableLoc("select top 20 * from HangHoa where ngaySanXuat <= getdate() order by ngaySanXuat desc");
+		}
+	}
+	public void xoaLocData() {
+		String luaChon = comboBox_Loc.getSelectedItem().toString();
+		if(luaChon.equals("Lọc danh sách những sản phẩm đã quá hạn sử dụng")) {
+			int result = JOptionPane.showConfirmDialog(this,"Bạn chắc chắn muốn xóa chứ", "Cảnh báo",
+		               JOptionPane.YES_NO_OPTION,
+		               JOptionPane.QUESTION_MESSAGE);
+		            if(result == JOptionPane.YES_OPTION){
+		            	setTableLoc("delete from HangHoa where getdate() >= hanSuDung");
+		            }else if (result == JOptionPane.NO_OPTION){
+		            	System.out.println("You selected: No");
+		            }else {
+		            	System.out.println("None selected");
+		            }
+		}
+	}
+	public void setDataDoanhThu(String sql, DefaultTableModel dTM) throws ParseException{
+		listDoanhThu = HangHoaDAO.getInstance().selectByDay(sql);
+		dTM.getDataVector().removeAllElements();
+		for (SanPhamDaBan sanPhamDaBan : listDoanhThu) {
+			dTM.addRow(new Object[] { sanPhamDaBan.getMaSanPham(), sanPhamDaBan.getTenSanPham(),
+					sanPhamDaBan.getNhaSanXuat(), sanPhamDaBan.getSoLuong(), sanPhamDaBan.getGiaBan(),
+					sdf.format(sanPhamDaBan.getNgayBanHang())});
+		}
+	}
+	public void doanhThuNgay() {
+		try {
+			Date date = new SimpleDateFormat("dd/MM/yyyy").parse(txt_DoanhThuNgay.getText());
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+			String sql = "SELECT * FROM HangDaBan WHERE ngayBanHang = '" + sdf1.format(date) + "'";
+			setDataDoanhThu(sql, model_DoanhThuNgay);
+			if(model_DoanhThuNgay.getRowCount() == 0) {
+				model_DoanhThuNgay.getDataVector().removeAllElements();
+				String noText[] = {"", "", "", "", "", ""};
+				model_DoanhThuNgay.addRow(noText);
+				model_DoanhThuNgay.removeRow(0);
+				text_Ngay.setText(txt_DoanhThuNgay.getText() + ":");
+				lbl_TienDoanhThuNgay.setText("Không có thông tin");
+			}else {
+				int dong = model_DoanhThuNgay.getRowCount();
+				int tongTien = 0;
+				for(int i = 0; i < dong; i++) {
+					Double gia = Double.valueOf(model_DoanhThuNgay.getValueAt(i, 4).toString());
+					int soLuong = Integer.valueOf(model_DoanhThuNgay.getValueAt(i, 3).toString());
+					tongTien += gia * soLuong;
+				}
+				text_Ngay.setText(txt_DoanhThuNgay.getText() + ":");
+				lbl_TienDoanhThuNgay.setText(Integer.toString(tongTien));
+			}
+			
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(), "Nhập sai định dạng dữ liệu.\nVui lòng kiểm tra lại!", "LỖI",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public void doanhThuThang() {
+		try {
+			Date date = new SimpleDateFormat("MM/yyyy").parse(txt_DoanhThuThang.getText());
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM");
+			String sql = "SELECT * FROM HangDaBan WHERE ngayBanHang like '" + sdf1.format(date) + "-%'";
+			setDataDoanhThu(sql, model_DoanhThuThang);
+			if(model_DoanhThuThang.getRowCount() == 0) {
+				model_DoanhThuThang.getDataVector().removeAllElements();
+				String noText[] = {"", "", "", "", "", ""};
+				model_DoanhThuThang.addRow(noText);
+				model_DoanhThuThang.removeRow(0);
+				text_Thang.setText(txt_DoanhThuThang.getText() + ":");
+				lbl_TienDoanhThuThang.setText("Không có thông tin");
+			}else {
+				int dong = model_DoanhThuThang.getRowCount();
+				int tongTien = 0;
+				for(int i = 0; i < dong; i++) {
+					Double gia = Double.valueOf(model_DoanhThuThang.getValueAt(i, 4).toString());
+					int soLuong = Integer.valueOf(model_DoanhThuThang.getValueAt(i, 3).toString());
+					tongTien += gia * soLuong;
+				}
+				text_Thang.setText(txt_DoanhThuThang.getText() + ":");
+				lbl_TienDoanhThuThang.setText(Integer.toString(tongTien));
+			}
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(), "Nhập sai định dạng dữ liệu.\nVui lòng kiểm tra lại!", "LỖI",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public void doanhThuNam() {
+		try {
+			Date date = new SimpleDateFormat("yyyy").parse(txt_DoanhThuNam.getText());
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy");
+			String sql = "SELECT * FROM HangDaBan WHERE ngayBanHang like '" + sdf1.format(date) + "-%-%'";
+			setDataDoanhThu(sql, model_DoanhThuNam);
+			if(model_DoanhThuNam.getRowCount() == 0) {
+				model_DoanhThuNam.getDataVector().removeAllElements();
+				String noText[] = {"", "", "", "", "", ""};
+				model_DoanhThuNam.addRow(noText);
+				model_DoanhThuNam.removeRow(0);
+				text_Nam.setText(txt_DoanhThuNam.getText() + ":");
+				lbl_TienDoanhThuNam.setText("Không có thông tin");
+			}else {
+				int dong = model_DoanhThuNam.getRowCount();
+				int tongTien = 0;
+				for(int i = 0; i < dong; i++) {
+					Double gia = Double.valueOf(model_DoanhThuNam.getValueAt(i, 4).toString());
+					int soLuong = Integer.valueOf(model_DoanhThuNam.getValueAt(i, 3).toString());
+					tongTien += gia * soLuong;
+				}
+				text_Nam.setText(txt_DoanhThuNam.getText() + ":");
+				lbl_TienDoanhThuNam.setText(Integer.toString(tongTien));
+			}
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(new JFrame(), "Nhập sai định dạng dữ liệu.\nVui lòng kiểm tra lại!", "LỖI",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
 	}
 
 }

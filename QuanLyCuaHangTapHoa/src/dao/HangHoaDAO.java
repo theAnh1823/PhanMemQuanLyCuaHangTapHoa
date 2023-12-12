@@ -5,9 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.HangHoa;
+import model.SanPhamDaBan;
 
 public class HangHoaDAO implements DAOInterface<HangHoa> {
 
@@ -237,6 +239,57 @@ public class HangHoaDAO implements DAOInterface<HangHoa> {
 			e.printStackTrace();
 		}
 		return hangHoa;
+	}
+	@Override
+	public ArrayList<HangHoa> selectBySQL(String sql) {
+		// TODO Auto-generated method stub
+		ArrayList<HangHoa> list = new ArrayList<>();
+		try {
+			Connection conn = DBConnectionFactory.getConnection();
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				HangHoa hangHoa = new HangHoa();
+				hangHoa.setMaSanPham(rs.getString("maSanPham"));
+				hangHoa.setTenSanPham(rs.getString("tenSanPham"));
+				hangHoa.setNhaSanXuat(rs.getString("nhaSanXuat"));
+				hangHoa.setSoLuong(rs.getInt("soLuong"));
+				hangHoa.setGiaBan(rs.getDouble("giaBan"));
+				hangHoa.setNgaySanXuat(rs.getDate("ngaySanXuat"));
+				hangHoa.setHanSuDung(rs.getDate("hanSuDung"));
+				list.add(hangHoa);
+			}
+
+			DBConnectionFactory.closeConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	@Override
+	public ArrayList<SanPhamDaBan> selectByDay(String sql) {
+		// TODO Auto-generated method stub
+		ArrayList<SanPhamDaBan> listBan = new ArrayList<>();
+		try {
+			Connection conn = DBConnectionFactory.getConnection();
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()) {
+				SanPhamDaBan sanPhamDaBan = new SanPhamDaBan();
+				sanPhamDaBan.setMaSanPham(rs.getString("maSanPham"));
+				sanPhamDaBan.setTenSanPham(rs.getString("tenSanPham"));
+				sanPhamDaBan.setNhaSanXuat(rs.getString("nhaSanXuat"));
+				sanPhamDaBan.setSoLuong(rs.getInt("soLuong"));
+				sanPhamDaBan.setGiaBan(rs.getDouble("giaBan"));
+				sanPhamDaBan.setNgayBanHang(rs.getDate("ngayBanHang"));
+				listBan.add(sanPhamDaBan);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listBan;
 	}
 	
 }

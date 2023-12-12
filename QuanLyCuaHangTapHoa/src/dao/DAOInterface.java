@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 
 import model.HangHoa;
+import model.SanPhamDaBan;
 
 public interface DAOInterface<T> {
 
@@ -23,4 +24,8 @@ public interface DAOInterface<T> {
 	boolean isProductExist(T t);
 
 	HangHoa selectIfExist(HangHoa t);
+
+	ArrayList<SanPhamDaBan> selectByDay(String sql);
+
+	ArrayList<HangHoa> selectBySQL(String sql);
 }

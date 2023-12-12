@@ -8,6 +8,9 @@ import view.TrangChu_View;
 public class TrangChu_Controller implements ActionListener {
 	private TrangChu_View manHinhChinh_View;
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public TrangChu_Controller(TrangChu_View manHinhChinh_View) {
 		super();
 		this.manHinhChinh_View = manHinhChinh_View;
@@ -31,7 +34,19 @@ public class TrangChu_Controller implements ActionListener {
 		} else if (cm.equals("Trở lại")) {
 			this.manHinhChinh_View.chuyenSangManHinhQuanLyBanHang();
 		}
-
+		
+		if (cm.equals("Lọc")) {
+			this.manHinhChinh_View.locData();
+		} else if (cm.equals("Xóa hàng hết hsd")) {
+			this.manHinhChinh_View.xoaLocData();
+		}
+		if (cm.equals("Doanh thu theo ngày")) {
+			this.manHinhChinh_View.doanhThuNgay();
+		}else if (cm.equals("Doanh thu theo tháng")) {
+			this.manHinhChinh_View.doanhThuThang();
+		}else if (cm.equals("Doanh thu theo năm")) {
+			this.manHinhChinh_View.doanhThuNam();
+		}
 		if (cm.equals("Hủy bỏ")) {
 			this.manHinhChinh_View.lamMoiTrang();
 		} else if (cm.equals("Xóa")) {
