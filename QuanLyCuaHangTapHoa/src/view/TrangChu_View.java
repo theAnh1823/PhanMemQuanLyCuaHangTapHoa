@@ -936,11 +936,11 @@ public class TrangChu_View extends JFrame {
 		JLabel lblNewLabel_5_2 = new JLabel("Doanh thu ngày");
 		lblNewLabel_5_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		lbl_TienDoanhThuNgay = new JLabel("(ghi số tiền vào đây)");
+		lbl_TienDoanhThuNgay = new JLabel("VND");
 		lbl_TienDoanhThuNgay.setForeground(new Color(0, 128, 0));
 		lbl_TienDoanhThuNgay.setFont(new Font("Tahoma", Font.BOLD, 18));
 
-		text_Ngay = new JLabel("dd/mm/yyyy:");
+		text_Ngay = new JLabel(":");
 		text_Ngay.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GroupLayout gl_panel_2_1 = new GroupLayout(panel_2_1);
 		gl_panel_2_1.setHorizontalGroup(gl_panel_2_1.createParallelGroup(Alignment.TRAILING)
@@ -1072,10 +1072,10 @@ public class TrangChu_View extends JFrame {
 		JLabel lblNewLabel_5_2_2 = new JLabel("Doanh thu tháng");
 		lblNewLabel_5_2_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		text_Thang = new JLabel("(month):");
+		text_Thang = new JLabel(":");
 		text_Thang.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		lbl_TienDoanhThuThang = new JLabel("(ghi số tiền vào đây)");
+		lbl_TienDoanhThuThang = new JLabel("VND");
 		lbl_TienDoanhThuThang.setForeground(new Color(0, 128, 0));
 		lbl_TienDoanhThuThang.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel_2_1_1 = new GroupLayout(panel_2_1_1);
@@ -1160,10 +1160,10 @@ public class TrangChu_View extends JFrame {
 		JLabel lblNewLabel_5_2_3 = new JLabel("Doanh thu năm");
 		lblNewLabel_5_2_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		text_Nam = new JLabel("(year):");
+		text_Nam = new JLabel(":");
 		text_Nam.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		lbl_TienDoanhThuNam = new JLabel("(ghi số tiền vào đây)");
+		lbl_TienDoanhThuNam = new JLabel("VND");
 		lbl_TienDoanhThuNam.setForeground(new Color(0, 128, 0));
 		lbl_TienDoanhThuNam.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel_2_1_2 = new GroupLayout(panel_2_1_2);
@@ -2000,7 +2000,7 @@ public class TrangChu_View extends JFrame {
 					tongTien += gia * soLuong;
 				}
 				text_Ngay.setText(txt_DoanhThuNgay.getText() + ":");
-				lbl_TienDoanhThuNgay.setText(Integer.toString(tongTien));
+				lbl_TienDoanhThuNgay.setText(Integer.toString(tongTien) + " VND");
 			}
 			
 		} catch (ParseException e1) {
@@ -2032,7 +2032,7 @@ public class TrangChu_View extends JFrame {
 					tongTien += gia * soLuong;
 				}
 				text_Thang.setText(txt_DoanhThuThang.getText() + ":");
-				lbl_TienDoanhThuThang.setText(Integer.toString(tongTien));
+				lbl_TienDoanhThuThang.setText(Integer.toString(tongTien) + " VND");
 			}
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
@@ -2063,7 +2063,7 @@ public class TrangChu_View extends JFrame {
 					tongTien += gia * soLuong;
 				}
 				text_Nam.setText(txt_DoanhThuNam.getText() + ":");
-				lbl_TienDoanhThuNam.setText(Integer.toString(tongTien));
+				lbl_TienDoanhThuNam.setText(Integer.toString(tongTien) + " VND");
 			}
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
