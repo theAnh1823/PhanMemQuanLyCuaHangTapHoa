@@ -62,6 +62,19 @@ public class TrangChu_Controller implements ActionListener {
 		}else if(cm.equals("Xuất file Excel")) {
 			this.manHinhChinh_View.xuatFileExcel();
 		}
+		
+		
+		if(cm.equals("Tìm kiếm bán hàng")) {
+			this.manHinhChinh_View.TimKiemBanHang();
+		}else if (cm.equals("Làm mới bán hàng")) {
+			this.manHinhChinh_View.LamMoiBangBanHang();
+		}else if (cm.equals("Xóa hàng")) {
+			this.manHinhChinh_View.XoaHangDaChon();
+		}else if (cm.equals("Chỉnh sửa")) {
+			this.manHinhChinh_View.ChinhSuaDaChon();
+		}else if (cm.equals("Xác nhận")) {
+			this.manHinhChinh_View.XacNhanDaChon();
+		}
 	}
 
 }
