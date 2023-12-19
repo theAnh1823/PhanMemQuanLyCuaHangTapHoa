@@ -53,7 +53,7 @@ public class TrangChu_Controller implements ActionListener {
 			this.manHinhChinh_View.xoaHang();
 		} else if (cm.equals("Cập nhật")) {
 			this.manHinhChinh_View.capNhat();
-		} else if (cm.equals("Hello")) {
+		} else if (cm.equals("Tìm kiếm")) {
 			this.manHinhChinh_View.timKiem();
 		} else if (cm.equals("Làm mới")) {
 			this.manHinhChinh_View.lamMoiTrang();
