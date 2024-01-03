@@ -15,10 +15,10 @@ Bên cạnh việc hoàn tất chương trình học, nhóm sinh viên có mong 
 - Lọc và tìm kiếm các sản phẩm
 - Xuất file Excel sản phẩm
  # Thành viên nhóm:
-  - [*Nguyễn Thế Anh*]
-  - [*Bùi Việt Anh*]
-  - [*Bùi Xuân Anh*]
-  - [*Trần Quang Luân*]
+  - [Nguyễn Thế Anh]()
+  - [Bùi Việt Anh]()
+  - [Bùi Xuân Anh]()
+  - [Trần Quang Luân]()
 # Giao diện ứng dụng 
 ![Screenshot 2024-01-03 121625](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/220a9a03-081d-4061-82e6-de28e5d51845)
 ![Screenshot 2024-01-03 112451](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/a7647b16-eb8e-4ac4-a362-03f40e1bec2f)
