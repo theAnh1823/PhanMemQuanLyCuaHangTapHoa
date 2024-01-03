@@ -22,5 +22,5 @@ Bên cạnh việc hoàn tất chương trình học, nhóm sinh viên có mong 
 # Giao diện ứng dụng 
 ![Screenshot 2024-01-03 121625](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/220a9a03-081d-4061-82e6-de28e5d51845)
 ![Screenshot 2024-01-03 112451](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/a7647b16-eb8e-4ac4-a362-03f40e1bec2f)
-![Screenshot 2024-01-03 112639](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/cde0a171-95a6-40ec-a448-e0a93b03b1aa)
 ![Screenshot 2024-01-03 112622](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/7ee56edc-41be-4921-92d7-e7f6d33f7c47)
+![Screenshot 2024-01-03 112639](https://github.com/theAnh1823/PhanMemQuanLyCuaHangTapHoa/assets/113270703/cde0a171-95a6-40ec-a448-e0a93b03b1aa)
